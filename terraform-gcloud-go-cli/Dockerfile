@@ -1,0 +1,82 @@
+# Setup build arguments with default versions
+ARG TERRAFORM_VERSION=1.1.7
+ARG PYTHON_MAJOR_VERSION=3.7
+ARG DEBIAN_VERSION=buster-20220316-slim
+
+# Download Terraform binary
+FROM debian:${DEBIAN_VERSION} as terraform-cli
+ARG TERRAFORM_VERSION
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends apt-utils
+RUN apt-get install -y --no-install-recommends curl=7.64.0-4+deb10u2
+RUN apt-get install -y --no-install-recommends ca-certificates
+RUN update-ca-certificates
+RUN apt-get install -y --no-install-recommends unzip=6.0-23+deb10u2
+RUN apt-get install -y --no-install-recommends gnupg=2.2.12-1+deb10u1
+RUN apt-get install -y --no-install-recommends wget
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
+# Hashicorp PGP public key, see https://www.hashicorp.com/security
+RUN wget https://raw.githubusercontent.com/sethvargo/hashicorp-installer/master/hashicorp.asc
+RUN gpg --import hashicorp.asc
+RUN gpg --verify terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN grep terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_SHA256SUMS | sha256sum -c -
+RUN unzip -j terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+
+# Install gcloud CLI (latest version) using install.sh
+FROM debian:${DEBIAN_VERSION} as gcloud-cli
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends ca-certificates
+RUN update-ca-certificates
+RUN apt-get install -y curl apt-transport-https lsb-release gnupg
+RUN curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz
+RUN mkdir -p /usr/local/gcloud \
+  && tar -C /usr/local/gcloud -xvf /tmp/google-cloud-sdk.tar.gz \
+  && /usr/local/gcloud/google-cloud-sdk/install.sh --quiet
+
+# Install GO and terratest log parser for testing
+FROM debian:${DEBIAN_VERSION} as go
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends ca-certificates
+RUN update-ca-certificates
+RUN apt-get install -y --no-install-recommends wget
+RUN wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+# Install terratest log parser binary
+RUN wget -O terratest_log_parser https://github.com/gruntwork-io/terratest/releases/download/v0.13.13/terratest_log_parser_linux_amd64
+RUN chmod +x terratest_log_parser
+RUN mv terratest_log_parser /usr/local/bin
+
+# Build final image
+FROM debian:${DEBIAN_VERSION}
+LABEL maintainer="LIM, CHOOI GUAN"
+ARG PYTHON_MAJOR_VERSION
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+    ca-certificates=20200601~deb10u2 \
+    git=1:2.20.1-2+deb10u3 \
+    python3=${PYTHON_MAJOR_VERSION}.3-1 \
+    python3-distutils=${PYTHON_MAJOR_VERSION}.3-1 \
+  # Needed for go terraform tests
+  && apt-get install -y gcc=4:8.3.0-1 \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* \
+  && update-alternatives --install /usr/bin/python python /usr/bin/python${PYTHON_MAJOR_VERSION} 1
+RUN apt-get install -y --no-install-recommends ca-certificates
+RUN update-ca-certificates
+COPY --from=terraform-cli /terraform /usr/local/bin/terraform
+COPY --from=gcloud-cli /usr/local/gcloud /usr/local/gcloud
+COPY --from=go /usr/local/go /usr/local/go
+COPY --from=go /usr/local/bin/terratest_log_parser /usr/local/bin/terratest_log_parser
+ENV PATH="${PATH}:/usr/local/go/bin:/usr/local/gcloud/google-cloud-sdk/bin"
+
+WORKDIR /workspace
+RUN groupadd --gid 1001 nonroot \
+  # Create a home folder for the user
+  && useradd --gid nonroot --create-home --uid 1001 nonroot \
+  && chown nonroot:nonroot /workspace
+USER nonroot
+
+CMD ["bash"]
