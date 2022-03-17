@@ -2,7 +2,7 @@
 
 Build Docker images with various cloud provider CLIs.  Everyone in your team can now have a consistent experience working with your cloud provider.  Additionally each image can be used as a deployment container as well which allows you to test locally before running it in a CI/CD pipeline.  Saving time and money for all.
 
-Cloud providers supported in the various container images!
+☁️ Cloud providers supported in the various container images! ☁️
 
 * [AWS](./terraform-aws-go-cli)
 * [Azure](./terraform-azure-go-cli)
