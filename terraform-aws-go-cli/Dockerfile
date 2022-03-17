@@ -56,7 +56,7 @@ RUN apt-get update \
   && update-alternatives --install /usr/bin/python python /usr/bin/python${PYTHON_MAJOR_VERSION} 1
 RUN apt-get install -y --no-install-recommends ca-certificates
 RUN update-ca-certificates
-# Install the aws cli
+# Install the aws cli (for ARM)
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip" && \
     unzip awscliv2.zip && \
     ./aws/install && \
