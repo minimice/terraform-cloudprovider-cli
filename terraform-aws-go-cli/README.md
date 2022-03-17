@@ -14,7 +14,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 ## Quick start 🍕
 1. Clone this repo.
 2. For ARM processors, open up a terminal window to this directory and run:  
-   `docker build -f 'Dockerfile_aarch64' -t local/terraform-aws-go-cli .`
+   `docker build -f 'Dockerfile_aarch64' -t local/terraform-aws-go-cli .`  
    For x86 processors, open up a terminal window to this directory and run:  
    `docker build -f 'Dockerfile_x86_64' -t local/terraform-aws-go-cli .`
 3. Open up a terminal to your terraform module folder, now run the container using the new image:
