@@ -18,7 +18,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 
     `docker run --rm --name terraform-gcloud-go-cli -v $(pwd):/workspace -it local/terraform-gcloud-go-cli bash`
 
-4. In the container, test that your gcloud CLI works by running:
+4. In the container, test that your gcloud CLI and other installed software works by running:
    ```
    gcloud --version
    go version
