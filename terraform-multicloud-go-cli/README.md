@@ -12,7 +12,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 1. Clone this repo.
 2. For x86 processors, open up a terminal window to this directory and run:  
    `docker build -f 'Dockerfile_x86_64' -t local/terraform-multicloud-go-cli .`  
-   For ARM processors (**Exclude AZ CLI**), open up a terminal window to this directory and run:  
+   For ARM processors (**Excludes AZ CLI as no ARM version yet for Debian**), open up a terminal window to this directory and run:  
    `docker build -f 'Dockerfile_aarch64' -t local/terraform-multicloud-go-cli .`
 3. Open up a terminal to your terraform module folder, now run the container using the new image:
 
