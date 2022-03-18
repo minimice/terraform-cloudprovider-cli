@@ -12,5 +12,45 @@ Build Docker images with various cloud provider CLIs.  Everyone in your team can
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AWS Certified Solutions Architect](https://www.credly.com/badges/c54918d6-6370-4099-afa8-122d6d4fa067))
 
 ## Pre-requisites 🛠
+
+Required if you wish to build each image locally.
+
 * Docker  
 * Cloud provider account 
+
+## Already have Docker?
+
+The images exist on Dockerhub.  You can run them directly in your terminal.
+
+#### AWS
+For ARM processors, run
+```
+docker run -it minimice/terraform-aws-go-cli-aarch64:latest
+```
+For x86 processors, run
+```
+docker run -it minimice/terraform-aws-go-cli-x86_64:latest
+```
+#### Azure
+For x86 processors, run
+```
+docker run -it minimice/terraform-azure-go-cli-x86_64:latest
+```
+#### GCP
+For ARM processors, run
+```
+docker run -it minimice/terraform-gcloud-go-cli-aarch64:latest
+```
+For x86 processors, run
+```
+docker run -it minimice/terraform-gcloud-go-cli-x86_64:latest
+```
+#### Multi-cloud
+For ARM processors, run
+```
+docker run -it minimice/terraform-multicloud-go-cli-aarch64:latest
+```
+For x86 processors, run
+```
+docker run -it minimice/terraform-multicloud-go-cli-x86_64:latest
+```
