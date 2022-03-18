@@ -21,7 +21,11 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 
     `docker run --env AWS_SECRET_ACCESS_KEY="h2gmFakeh6Jrv8nQOGpCSa+Ary5" --env AWS_ACCESS_KEY_ID="AFAKEF7TR4654HFVXX" --env AWS_DEFAULT_REGION="eu-west-1" --rm --name terraform-aws-go-cli -v $(pwd):/workspace -it local/terraform-aws-go-cli bash`
 
-4. In the container, test that your credentials work by running:
-   `aws s3 ls`
+4. In the container, test that your credentials work and other installed software works by running:
+   ```
+   aws s3 ls
+   go version
+   terraform -v
+   ```
 
 5. Done! Have a coffee! ☕️

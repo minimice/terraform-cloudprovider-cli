@@ -3,7 +3,7 @@ ARG TERRAFORM_VERSION=1.1.7
 ARG PYTHON_MAJOR_VERSION=3.7
 ARG DEBIAN_VERSION=buster-20220316-slim
 
-# Download Terraform binary
+# Download Terraform binary (ARM)
 FROM debian:${DEBIAN_VERSION} as terraform-cli
 ARG TERRAFORM_VERSION
 RUN apt-get update
@@ -15,26 +15,26 @@ RUN apt-get install -y --no-install-recommends unzip=6.0-23+deb10u2
 RUN apt-get install -y --no-install-recommends gnupg=2.2.12-1+deb10u1
 RUN apt-get install -y --no-install-recommends wget
 RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS
-RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_arm64.zip
 RUN wget https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig
 # Hashicorp PGP public key, see https://www.hashicorp.com/security
 RUN wget https://raw.githubusercontent.com/sethvargo/hashicorp-installer/master/hashicorp.asc
 RUN gpg --import hashicorp.asc
 RUN gpg --verify terraform_${TERRAFORM_VERSION}_SHA256SUMS.sig terraform_${TERRAFORM_VERSION}_SHA256SUMS
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN grep terraform_${TERRAFORM_VERSION}_linux_amd64.zip terraform_${TERRAFORM_VERSION}_SHA256SUMS | sha256sum -c -
-RUN unzip -j terraform_${TERRAFORM_VERSION}_linux_amd64.zip
+RUN grep terraform_${TERRAFORM_VERSION}_linux_arm64.zip terraform_${TERRAFORM_VERSION}_SHA256SUMS | sha256sum -c -
+RUN unzip -j terraform_${TERRAFORM_VERSION}_linux_arm64.zip
 
-# Install GO and terratest log parser for testing
+# Install GO (ARM) and terratest log parser (ARM) for testing
 FROM debian:${DEBIAN_VERSION} as go
 RUN apt-get update
 RUN apt-get install -y --no-install-recommends ca-certificates
 RUN update-ca-certificates
 RUN apt-get install -y --no-install-recommends wget
-RUN wget https://golang.org/dl/go1.16.3.linux-amd64.tar.gz
-RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.16.3.linux-amd64.tar.gz
+RUN wget https://go.dev/dl/go1.18.linux-arm64.tar.gz
+RUN rm -rf /usr/local/go && tar -C /usr/local -xzf go1.18.linux-arm64.tar.gz
 # Install terratest log parser binary
-RUN wget -O terratest_log_parser https://github.com/gruntwork-io/terratest/releases/download/v0.13.13/terratest_log_parser_linux_amd64
+RUN wget -O terratest_log_parser https://github.com/gruntwork-io/terratest/releases/download/v0.40.6/terratest_log_parser_linux_arm64
 RUN chmod +x terratest_log_parser
 RUN mv terratest_log_parser /usr/local/bin
 
