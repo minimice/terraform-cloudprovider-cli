@@ -12,17 +12,19 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 1. Clone this repo.
 2. For x86 processors, open up a terminal window to this directory and run:  
    `docker build -f 'Dockerfile_x86_64' -t local/terraform-multicloud-go-cli .`  
-   For ARM processors, open up a terminal window to this directory and run:  
-   `NO SOLUTION YET - TBD`
+   For ARM processors (**Exclude AZ CLI**), open up a terminal window to this directory and run:  
+   `docker build -f 'Dockerfile_aarch64' -t local/terraform-multicloud-go-cli .`
 3. Open up a terminal to your terraform module folder, now run the container using the new image:
 
     `docker run --rm --name terraform-multicloud-go-cli -v $(pwd):/workspace -it local/terraform-multicloud-go-cli bash`
 
-4. In the container, test that your cloud CLIs works by running:
+4. In the container, test that your cloud CLIs and installed software work by running:
    ```
    gcloud --version
    az version
    aws --version
+   go version
+   terraform -v
    ```
 
 5. Done! Have a coffee! ☕️
