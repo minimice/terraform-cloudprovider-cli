@@ -47,7 +47,8 @@ RUN apt-get update \
     ca-certificates=20200601~deb10u2 \
     git=1:2.20.1-2+deb10u3 \
     python3=${PYTHON_MAJOR_VERSION}.3-1 \
-    python3-distutils=${PYTHON_MAJOR_VERSION}.3-1 curl \
+    python3-distutils=${PYTHON_MAJOR_VERSION}.3-1 \
+    unzip curl less groff \
   && update-ca-certificates \
   # Install gcloud CLI (latest vrsion) using install.sh
   && curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz \

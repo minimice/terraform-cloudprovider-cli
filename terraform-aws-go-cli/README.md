@@ -21,7 +21,11 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 
     `docker run --env AWS_SECRET_ACCESS_KEY="h2gmFakeh6Jrv8nQOGpCSa+Ary5" --env AWS_ACCESS_KEY_ID="AFAKEF7TR4654HFVXX" --env AWS_DEFAULT_REGION="eu-west-1" --rm --name terraform-aws-go-cli -v $(pwd):/workspace -it local/terraform-aws-go-cli bash`
 
-4. In the container, test that your credentials work and other installed software works by running:
+4. If you're using aws-vault, you can export the env variables as follows:
+
+    `docker run --env-file <(aws-vault exec YOUR_AWS_VAULT_PROFILE_HERE -- env | grep ^AWS_) --rm --name terraform-aws-go-cli -v $(pwd):/workspace -it local/terraform-aws-go-cli bash`
+
+5. In the container, test that your credentials work and other installed software works by running:
    ```
    aws s3 ls
    go version
