@@ -1,6 +1,11 @@
 # terraform-cloudprovider-cli
 
-Build Docker images with various cloud provider CLIs.  Everyone in your team can now have a consistent experience working with your cloud provider.  Additionally each image can be used as a deployment container as well which allows you to test locally before running it in a CI/CD pipeline.  Saving time and money for all.
+Build Docker images with various cloud provider CLIs.  
+
+✅ No need to ever install any package locally on your machine.
+✅ Everyone in a team can now have a consistent experience working with your cloud provider.
+✅ The image can be used as a deployment container, allowing you to test locally before running it in a CI/CD pipeline.
+✅ Saving time and money for all.  Life is precious, don't spend time doing trivial tasks.
 
 ☁️ Cloud providers supported in the various container images! ☁️
 
