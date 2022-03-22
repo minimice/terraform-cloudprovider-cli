@@ -21,6 +21,7 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
    `docker build -f 'Dockerfile_x86_64' -t local/terraform-azure-go-cli .`  
    For ARM processors, open up a terminal window to this directory and run:  
    `NO SOLUTION YET - TBD`
+   See https://github.com/Azure/azure-cli/issues/7368
 3. To run the image using a service principle, e.g. the service principle called `devops` in your subscription, you must obtain the secret. This will be used in the next step.
 4. Open up a terminal to your terraform module folder then run the following command (replace `YOUR-SECRET-HERE` with the secret value obtained from the previous step) and pass in all your environment variables by running the following command:
 
