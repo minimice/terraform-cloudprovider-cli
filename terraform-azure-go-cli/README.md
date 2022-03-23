@@ -15,6 +15,12 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 * Docker  
 * Azure account with service principle 
 
+## Pre-installed tools
+- `az`, the Azure CLI (X86_64 only)
+- `terraform`
+- `terratest_log_parser`
+- `go`
+
 ## Quick start 🍕
 1. Clone this repo.
 2. For x86 processors, open up a terminal window to this directory and run:  

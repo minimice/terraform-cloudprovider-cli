@@ -8,6 +8,16 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 * Docker  
 * Google/AWS/Azure account
 
+## Pre-installed tools
+- `aws-shell`, run aws commands with auto-complete!  See [here](https://github.com/awslabs/aws-shell)
+- `cfn-dia`, diagramming tool to visualise Cloudformation templates!  See [here](https://github.com/mhlabs/cfn-diagram)
+- `aws`, the AWS CLI
+- `gcloud`, the GCloud CLI
+- `az`, the Azure CLI (X86_64 only)
+- `terraform`
+- `terratest_log_parser`
+- `go`
+
 ## Quick start 🍕
 1. Clone this repo.
 2. For x86 processors, open up a terminal window to this directory and run:  
