@@ -50,7 +50,7 @@ RUN apt-get update \
     python3=${PYTHON_MAJOR_VERSION}.3-1 \
     python3-distutils=${PYTHON_MAJOR_VERSION}.3-1 curl \
     unzip curl less groff \
-    python3-pip \
+    python3-pip python3-setuptools \
   # Install az CLI using curl piped to bash
   && curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
   # Needed for go terraform tests

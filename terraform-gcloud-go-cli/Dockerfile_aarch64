@@ -49,7 +49,7 @@ RUN apt-get update \
     python3=${PYTHON_MAJOR_VERSION}.3-1 \
     python3-distutils=${PYTHON_MAJOR_VERSION}.3-1 \
     unzip curl less groff \
-    python3-pip \
+    python3-pip python3-setuptools \
   && update-ca-certificates \
   # Install gcloud CLI (latest version) using install.sh
   && curl https://dl.google.com/dl/cloudsdk/release/google-cloud-sdk.tar.gz > /tmp/google-cloud-sdk.tar.gz \
