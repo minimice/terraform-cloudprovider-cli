@@ -71,7 +71,9 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* \
   && update-alternatives --install /usr/bin/python python /usr/bin/python${PYTHON_MAJOR_VERSION} 1 \
   # Install cfn-dia diagramming tool (for visualising Cloudformation)
-  && npm i -g @mhlabs/cfn-diagram
+  && npm i -g @mhlabs/cfn-diagram \
+  # Install aws-shell
+  && pip3 install aws-shell
 # Copy binaries
 COPY --from=terraform-cli /terraform /usr/local/bin/terraform
 COPY --from=go /usr/local/go /usr/local/go

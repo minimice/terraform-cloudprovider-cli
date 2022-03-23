@@ -63,7 +63,9 @@ RUN apt-get update \
     ./aws/install && \
     rm awscliv2.zip \
   # Install cfn-dia diagramming tool (for visualising Cloudformation)
-  && npm i -g @mhlabs/cfn-diagram
+  && npm i -g @mhlabs/cfn-diagram \
+  # Install aws-shell
+  && pip3 install aws-shell
 COPY --from=terraform-cli /terraform /usr/local/bin/terraform
 COPY --from=go /usr/local/go /usr/local/go
 COPY --from=go /usr/local/bin/terratest_log_parser /usr/local/bin/terratest_log_parser
