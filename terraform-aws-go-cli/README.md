@@ -23,7 +23,8 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 ## Quick start 🍕
 1. Clone this repo.
 2. Open up a terminal window to this directory and run:
-   `docker buildx build --platform linux/amd64,linux/arm64 -t local/terraform-aws-go-cli:latest .`
+   `docker build -t local/terraform-aws-go-cli:latest .`
+
 3. Open up a terminal to your terraform module folder, now run the container using the new image:
 
     `docker run --env AWS_SECRET_ACCESS_KEY="h2gmFakeh6Jrv8nQOGpCSa+Ary5" --env AWS_ACCESS_KEY_ID="AFAKEF7TR4654HFVXX" --env AWS_DEFAULT_REGION="eu-west-1" --rm --name terraform-aws-go-cli -v $(pwd):/workspace -it local/terraform-aws-go-cli bash`
@@ -39,4 +40,9 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
    terraform -v
    ```
 
-5. Done! Have a coffee! ☕️
+6. (Optional) To build specific platform versions, and push to your own Dockerhub registry, run:
+   ```
+   `docker buildx build --platform linux/amd64,linux/arm64 -t YOUR_DOCKERHUB_ID/terraform-aws-go-cli:latest --push .`
+   ```
+
+7. Done! Have a coffee! ☕️
