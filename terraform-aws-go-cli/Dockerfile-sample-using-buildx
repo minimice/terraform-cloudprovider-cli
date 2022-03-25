@@ -1,0 +1,17 @@
+# Using buildx
+# See https://docs.docker.com/buildx/working-with-buildx/
+
+ARG ARCHITECTURE=amd64
+
+FROM golang:alpine AS build
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+ARG ARCHITECTURE=${ARCHITECTURE}
+ENV ARCHITECTURE $ARCHITECTURE
+RUN echo "I am running on $BUILDPLATFORM, building for $TARGETPLATFORM" > /log
+RUN if [ "$TARGETPLATFORM" = "linux/amd64" ]; then ARCHITECTURE=amd64; elif [ "$TARGETPLATFORM" = "linux/arm/v7" ]; then ARCHITECTURE=arm64; elif [ "$TARGETPLATFORM" = "linux/arm64" ]; then ARCHITECTURE=arm64; else ARCHITECTURE=amd64; fi \
+    && echo ${ARCHITECTURE}
+
+FROM alpine
+COPY --from=build /log /log
+
