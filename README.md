@@ -28,14 +28,10 @@ Required if you wish to build each image locally.
 
 The images exist on Dockerhub.  You can run them directly in your terminal.
 
-#### AWS
-For ARM processors, run
+#### AWS (supports multiple-architectures)
+Run
 ```
-docker run -it minimice/terraform-aws-go-cli-aarch64:latest
-```
-For x86 processors, run
-```
-docker run -it minimice/terraform-aws-go-cli-x86_64:latest
+docker run -it minimice/terraform-aws-go-cli:latest
 ```
 #### Azure
 For x86 processors, run
