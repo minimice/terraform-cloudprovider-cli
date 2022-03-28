@@ -2,6 +2,8 @@
 
 This Dockerfile builds a cli where you can run terraform, gcloud, and go commands.  
 
+✅ Supports multi-plaforms (x86_64, arm64)
+
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AWS Certified Solutions Architect](https://www.credly.com/badges/c54918d6-6370-4099-afa8-122d6d4fa067))
 
 ## Pre-requisites 🛠
@@ -9,21 +11,15 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 * Google account
 
 ## Pre-installed tools
-- `aws-shell`, run aws commands with auto-complete!  See [here](https://github.com/awslabs/aws-shell)
-- `cfn-dia`, diagramming tool to visualise Cloudformation templates!  See [here](https://github.com/mhlabs/cfn-diagram)
-- `aws`, the AWS CLI
 - `gcloud`, the GCloud CLI
-- `az`, the Azure CLI (X86_64 only)
 - `terraform`
 - `terratest_log_parser`
 - `go`
 
 ## Quick start 🍕
 1. Clone this repo.
-2. For x86 processors, open up a terminal window to this directory and run:  
-   `docker build -f 'Dockerfile_x86_64' -t local/terraform-gcloud-go-cli .`  
-   For ARM processors, open up a terminal window to this directory and run:  
-   `docker build -f 'Dockerfile_aarch64' -t local/terraform-gcloud-go-cli .`
+2. Open up a terminal window to this directory and run:
+   `docker build -t local/terraform-gcloud-go-cli:latest .`
 3. Open up a terminal to your terraform module folder, now run the container using the new image:
 
     `docker run --rm --name terraform-gcloud-go-cli -v $(pwd):/workspace -it local/terraform-gcloud-go-cli bash`
@@ -35,4 +31,9 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
    terraform -v
    ```
 
-5. Done! Have a coffee! ☕️
+5. (Optional) To build specific platform versions, and push to your own Dockerhub registry, run:
+   ```
+   `docker buildx build --platform linux/amd64,linux/arm64 -t YOUR_DOCKERHUB_ID/terraform-gcloud-go-cli:latest --push .`
+   ```
+
+6. Done! Have a coffee! ☕️
