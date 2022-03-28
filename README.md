@@ -1,7 +1,9 @@
 # terraform-cloudprovider-cli
 
-Build Docker images with various cloud provider CLIs and other required tools.  
+Build 🐳 Docker images 🐳 with various cloud provider CLIs and other fun tools!🎉🥳  
 
+✅ Supports best practise paradigm, build once deploy many!  
+✅ Supports multi-platforms (x86_64, arm64).  
 ✅ No need to ever install any package locally on your machine.  
 ✅ Everyone in a team can now have a consistent experience working with your cloud provider.  
 ✅ Can be used as a deployment container, allowing you to test locally before running it in a CI/CD pipeline.  
@@ -30,32 +32,33 @@ The images exist on Dockerhub.  You can run them directly in your terminal.
 
 #### AWS
 
-✅ Supports multi-plaforms (x86_64, arm64)
+✅ Supports multi-platforms (x86_64, arm64)
 
 Run
 ```
 docker run -it minimice/terraform-aws-go-cli:latest
 ```
 #### Azure
+
+✅ Multi-platform ready.  Currently only supporting x86_64 as Microsoft has not made an ARM64 version ready yet.
+
 For x86 processors, run
 ```
-docker run -it minimice/terraform-azure-go-cli-x86_64:latest
+docker run -it minimice/terraform-azure-go-cli:latest
 ```
 #### GCP
-For ARM processors, run
+
+✅ Supports multi-platforms (x86_64, arm64)
+
+Run
 ```
-docker run -it minimice/terraform-gcloud-go-cli-aarch64:latest
-```
-For x86 processors, run
-```
-docker run -it minimice/terraform-gcloud-go-cli-x86_64:latest
+docker run -it minimice/terraform-gcloud-go-cli:latest
 ```
 #### Multi-cloud
-For ARM processors, run
+
+✅ Supports multi-platforms (x86_64, arm64)
+
+Run
 ```
-docker run -it minimice/terraform-multicloud-go-cli-aarch64:latest
-```
-For x86 processors, run
-```
-docker run -it minimice/terraform-multicloud-go-cli-x86_64:latest
+docker run -it minimice/terraform-multicloud-go-cli:latest
 ```
