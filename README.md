@@ -40,7 +40,7 @@ docker run -it minimice/terraform-aws-go-cli:latest
 ```
 #### Azure
 
-✅ Multi-platform ready.  Currently only supporting x86_64 as Microsoft has not made an ARM64 version ready yet.
+✅ Multi-platform ready.  Currently only supporting x86_64 as Microsoft has not made an ARM64 version for Debian.
 
 For x86 processors, run
 ```
@@ -56,7 +56,7 @@ docker run -it minimice/terraform-gcloud-go-cli:latest
 ```
 #### Multi-cloud
 
-✅ Supports multi-platforms (x86_64, arm64)
+✅ Supports multi-platforms (x86_64, arm64).  Azure CLI only supports x86_64 as Microsoft has not made an ARM64 version for Debian.
 
 Run
 ```
