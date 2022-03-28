@@ -1,5 +1,7 @@
 # terraform-azure-go-cli
 
+✅ Multi-platform ready.  Currently only supporting x86_64 as Microsoft has not made an ARM64 version ready yet.
+
 This Dockerfile builds a cli where you can run terraform, azure, and go commands.  You can use Azure service principle credentials (or your own credentials) by passing in the following required environment variables:
 - ARM_TENANT_ID
 - ARM_SUBSCRIPTION_ID
@@ -23,8 +25,8 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 
 ## Quick start 🍕
 1. Clone this repo.
-2. For x86 processors, open up a terminal window to this directory and run:  
-   `docker build -f 'Dockerfile_x86_64' -t local/terraform-azure-go-cli .`  
+2. Open up a terminal window to this directory and run:
+   `docker build -t local/terraform-azure-go-cli:latest .`
    For ARM processors, open up a terminal window to this directory and run:  
    `NO SOLUTION YET - TBD`
    See https://github.com/Azure/azure-cli/issues/7368
@@ -36,4 +38,9 @@ Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AW
 5. In the container, test that the CLI is installed by running:
    `az version`
 
-6. Done! Have a coffee! ☕️
+6. (Optional) To build specific platform versions, and push to your own Dockerhub registry, run:
+   ```
+   `docker buildx build --platform linux/amd64,linux/arm64 -t YOUR_DOCKERHUB_ID/terraform-azure-go-cli:latest --push .`
+   ```
+
+7. Done! Have a coffee! ☕️
