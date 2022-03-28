@@ -1,8 +1,8 @@
 # terraform-multicloud-go-cli
 
-This Dockerfile builds a cli where you can run terraform, gcloud, aws, azure and go commands. Combines all the major cloud provider CLIs into one handy container image.  
-
 ✅ Supports multi-platforms (x86_64, arm64)  
+
+This Dockerfile builds a cli where you can run terraform, gcloud, aws, azure and go commands. Combines all the major cloud provider CLIs into one handy container image.  
 
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AWS Certified Solutions Architect](https://www.credly.com/badges/c54918d6-6370-4099-afa8-122d6d4fa067))
 

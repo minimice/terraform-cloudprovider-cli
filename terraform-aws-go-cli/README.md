@@ -1,11 +1,11 @@
 # terraform-aws-go-cli
 
+✅ Supports multi-platforms (x86_64, arm64)  
+
 This Dockerfile builds a cli where you can run terraform, aws cli, and go commands.  Pass in the following required environment variables:
 - AWS_SECRET_ACCESS_KEY
 - AWS_ACCESS_KEY_ID
 - AWS_DEFAULT_REGION
-
-✅ Supports multi-plaforms (x86_64, arm64)
 
 Author: [Lim Chooi Guan](https://www.linkedin.com/in/cgl88/) (AWS Architect, [AWS Certified Solutions Architect](https://www.credly.com/badges/c54918d6-6370-4099-afa8-122d6d4fa067))
 
